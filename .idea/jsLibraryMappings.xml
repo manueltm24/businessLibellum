@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{bootstrap, jquery-1.11.2, jquery.form-validator}" />
+    <file url="file://$PROJECT_DIR$/grails-app" libraries="{bootstrap, jquery-1.11.2, jquery.form-validator}" />
+    <file url="file://$PROJECT_DIR$/src/integration-test" libraries="{bootstrap, jquery-1.11.2, jquery.form-validator}" />
+    <file url="file://$PROJECT_DIR$/src/main" libraries="{bootstrap, jquery-1.11.2, jquery.form-validator}" />
+    <file url="file://$PROJECT_DIR$/src/test" libraries="{bootstrap, jquery-1.11.2, jquery.form-validator}" />
+  </component>
+</project>

@@ -1,0 +1,19 @@
+package com.businessLibellum.domains.seguridad
+
+import com.businessLibellum.domains.Item
+import grails.testing.gorm.DomainUnitTest
+import spock.lang.Specification
+
+class ItemSpec extends Specification implements DomainUnitTest<Item> {
+
+    def setup() {
+    }
+
+    def cleanup() {
+    }
+
+    void "test something"() {
+        expect:"fix me"
+            true == false
+    }
+}
