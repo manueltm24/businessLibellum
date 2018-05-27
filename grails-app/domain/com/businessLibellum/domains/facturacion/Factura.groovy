@@ -16,6 +16,7 @@ class Factura {
     MetodoPago metodoPago
     Comprobante comprobante
     Cliente cliente
+    String notas
 
 
     //Datos para facturacion, JASPERREPORT

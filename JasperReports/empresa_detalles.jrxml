@@ -105,7 +105,7 @@
 				<textFieldExpression><![CDATA["Tel.:"+$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-20" y="69" width="150" height="13"/>
+				<reportElement x="-20" y="69" width="170" height="13"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>

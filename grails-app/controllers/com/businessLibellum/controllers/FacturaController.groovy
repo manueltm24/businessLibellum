@@ -40,14 +40,11 @@ class FacturaController {
     def procesarCrearFactura(FacturaForm form){
         Empresa empresa=Empresa.findById(session[IConstantes.EMPRESA_SELECCIONADA] as Long)
 
-        Factura factura = new Factura(tipoFactura: "FACTURA "+Comprobante.findById(form.comprobante).nombre , comprobante: Comprobante.findById(form.comprobante), cliente: Cliente.findById(form.cliente), metodoPago: MetodoPago.findById(form.metodoPago), empresa: empresa, subTotal: form.subtotal, total: form.total, porciertoDescuento: form.descuento_porciento, porcientoImpuesto: form.impuesto_porciento, comprobante_String: Comprobante.findById(form.comprobante).numeracion_Inicio+Comprobante.findById(form.comprobante).numeracion_Fin, nombreCliente:Cliente.findById(form.cliente).nombre, direccion: Cliente.findById(form.cliente).direccion, ciudad: Cliente.findById(form.cliente).ciudad, pais: Cliente.findById(form.cliente).pais,telefono: Cliente.findById(form.cliente).telefono, metodoPago_String: MetodoPago.findById(form.metodoPago).nombre, nombre_Cliente: Cliente.findById(form.cliente).nombre, direccion_Cliente: Cliente.findById(form.cliente).direccion, pais_Cliente: Cliente.findById(form.cliente).pais, ciudad_Cliente: Cliente.findById(form.cliente).ciudad,telefono_Cliente:Cliente.findById(form.cliente).telefono  ).save(flush:true, failOnError:true)
+        Factura factura = new Factura(tipoFactura: "FACTURA "+Comprobante.findById(form.comprobante).nombre,notas: "Ninguna.", comprobante: Comprobante.findById(form.comprobante), cliente: Cliente.findById(form.cliente), metodoPago: MetodoPago.findById(form.metodoPago), empresa: empresa, subTotal: form.subtotal, total: form.total, porciertoDescuento: form.descuento_porciento, porcientoImpuesto: form.impuesto_porciento, comprobante_String: Comprobante.findById(form.comprobante).numeracion_Inicio+Comprobante.findById(form.comprobante).numeracion_Fin, nombreCliente:Cliente.findById(form.cliente).nombre, direccion: Cliente.findById(form.cliente).direccion, ciudad: Cliente.findById(form.cliente).ciudad, pais: Cliente.findById(form.cliente).pais,telefono: Cliente.findById(form.cliente).telefono, metodoPago_String: MetodoPago.findById(form.metodoPago).nombre, nombre_Cliente: Cliente.findById(form.cliente).nombre, direccion_Cliente: Cliente.findById(form.cliente).direccion, pais_Cliente: Cliente.findById(form.cliente).pais, ciudad_Cliente: Cliente.findById(form.cliente).ciudad,telefono_Cliente:Cliente.findById(form.cliente).telefono  ).save(flush:true, failOnError:true)
 
         form.listadoArticulos.each {
-            new ItemFactura(item: Item.findById(it.idItem),cantidad: it.cantidad, preciounidad: it.preciounidad, factura: factura).save(flush:true, failOnError:true)
+            new ItemFactura(item: Item.findById(it.idItem),nombre_Item: Item.findById(it.idItem).nombre,cantidad: it.cantidad, preciounidad: it.preciounidad, factura: factura).save(flush:true, failOnError:true)
         }
-
-
-
         println("Nueva factura creada!")
 
         render factura as JSON
@@ -129,9 +126,9 @@ class FacturaController {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put(JRParameter.REPORT_FILE_RESOLVER, new SimpleFileResolver(reportsDir));
 
-        parameters.put("idFactura",idFactura)
+        parameters.put("IDFACTURA",idFactura)
 
-        String sourceFileName = proyectPath + "Invoice_main.jrxml";
+        String sourceFileName = proyectPath + "FACTURA.jrxml";
         File theFile = new File(sourceFileName);
         JasperDesign jasperDesign = JRXmlLoader.load(theFile);//Se carga el archivo
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);

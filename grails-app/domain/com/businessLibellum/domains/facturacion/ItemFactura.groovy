@@ -9,9 +9,10 @@ class ItemFactura {
     Double preciounidad
     Factura factura
 
-
-
+    //Datos para facturacion, JASPERREPORT
+    String nombre_Item
 
     static constraints = {
     }
+
 }
