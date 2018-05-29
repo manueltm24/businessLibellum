@@ -1,129 +1,297 @@
-<%@ page import="com.businessLibellum.domains.facturacion.Factura" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <title>Boooya - Payment - Invoice</title>
+
+    <!-- META SECTION -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simple example</title>
 
-    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
-    <style>body{font-family:'Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;text-align:center;color:#777;}body h1{font-weight:300;margin-bottom:0px;padding-bottom:0px;color:#000;}body h3{font-weight:300;margin-top:10px;margin-bottom:20px;font-style:italic;color:#555;}body a{color:#06F;}.invoice-box{max-width:800px;margin:auto;padding:30px;border:1px solid #eee;box-shadow:0 0 10px rgba(0,0,0,.15);font-size:16px;line-height:24px;font-family:'Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;color:#555;}.invoice-box table{width:100%;line-height:inherit;text-align:left;}.invoice-box table td{padding:5px;vertical-align:top;}.invoice-box table tr td:nth-child(2){text-align:right;}.invoice-box table tr.top table td{padding-bottom:20px;}.invoice-box table tr.top table td.title{font-size:45px;line-height:45px;color:#333;}.invoice-box table tr.information table td{padding-bottom:40px;}.invoice-box table tr.heading td{background:#eee;border-bottom:1px solid #ddd;font-weight:bold;}.invoice-box table tr.details td{padding-bottom:20px;}.invoice-box table tr.item td{border-bottom:1px solid #eee;}.invoice-box table tr.item.last td{border-bottom:none;}.invoice-box table tr.total td:nth-child(2){border-top:2px solid #eee;font-weight:bold;}@media only screen and (max-width: 600px) {.invoice-box table tr.top table td{width:100%;display:block;text-align:center;}.invoice-box table tr.information table td{width:100%;display:block;text-align:center;}}
-    </style>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- END META SECTION -->
+    <!-- CSS INCLUDE -->
+    <asset:link rel="stylesheet" href="css/styles.css"/>
+    <!-- EOF CSS INCLUDE -->
 
+
+    <script type="text/javascript">
+        function zoom() {
+            var div = document.getElementById ("invoice");
+            div.style.zoom = "80%";
+
+            // document.body.style.zoom = "80%"
+        }
+    </script>
 </head>
+<body onload="zoom()">
 
-<body>
-<div class="invoice-box">
-    <table cellpadding="0" cellspacing="0">
-        <tbody><tr class="top">
-            <td colspan="2">
-                <table>
-                    <tbody><tr>
-                        <td class="title">
-                            <img src="http://plavatvornica.com/wp-content/themes/plavatvornica/images/logo.png" style="width:100%; max-width:300px;">
-                        </td>
-                        <td>
-                            Factura #: 123<br>
-                            Fecha: January 1, 2015<br>
-                            NCF:
-                        </td>
-                    </tr>
-                    </tbody></table>
-            </td>
-        </tr>
-        <tr class="information">
-            <td colspan="2">
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <b>Vendido por:</b><br>
-                            ${factura.empresa.nombre}<br>
-                            Tel.: <br>
-                            ${factura.empresa.direccion}<br>
-                            ${factura.empresa.ciudad}, ${factura.empresa.pais}<br>
-                            RNC:
+<!-- APP WRAPPER -->
+<div class="app">
 
-                        </td>
-                        <td>
-                            <b>Vendido a:</b><br>
-                            ${factura.cliente.nombre}<br>
-                            Tel.: <br>
-                            ${factura.cliente.direccion}<br>
-                            ${factura.cliente.ciudad}, ${factura.cliente.pais}
-                        </td>
-                        <td></td>
-                        <td></td>
+    <!-- START APP CONTAINER -->
+    <div class="app-container">
+        <!-- START APP HEADER -->
+        <div class="app-header">
+            <div class="container container-boxed">
+                <ul class="app-header-buttons visible-mobile">
+                    <li><a href="#" class="btn btn-link btn-icon" data-navigation-horizontal-toggle="true"><span class="icon-menu"></span></a></li>
+                </ul>
+                <a href="index.html" class="app-header-logo app-header-logo-light app-header-logo-condensed">Project</a>
 
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Metodo de pago
-            </td>
-            <td>
-                Vendedor:
-            </td>
+                <ul class="app-header-buttons pull-right">
+                    <li><a href="#" class="btn btn-link btn-icon"><span class="icon-cog"></span></a></li>
+                    <li><a href="#" class="btn btn-default">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- END APP HEADER  -->
 
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>
-                ${factura.metodoPago.nombre}
-            </td>
-            <td>
-                -
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>
-                Item
-            </td>
-            <td>
-                Cantidad
-            </td>
-            <td>
-                Precio Uni.
-            </td>
-            <td>
-                Subtotal
-            </td>
-        </tr>
+        <!-- START APP CONTENT -->
+        <div class="app-content">
+            <div class="app-navigation-horizontal margin-bottom-15">
+                <div class="container container-boxed">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="#"><span class="icon-earth"></span> My Account</a>
+                                <ul>
+                                    <li><a href="pages-bank-main.html">Main</a></li>
+                                    <li><a href="pages-bank-cards.html">My Cards</a></li>
+                                    <li><a href="pages-bank-deposits.html">My Deposits</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-usd"></span> Ingresos</a>
+                                <ul>
+                                    <li><a href="/factura/crearFactura">Facturación</a></li>
+                                    <li><a href="#">Swift Activity</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><span class="icon-cog"></span> Settings</a>
+                                <ul>
+                                    <li><a href="pages-bank-settings.html">Account</a></li>
+                                    <li><a href="pages-bank-security.html">Security</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- START PAGE CONTAINER -->
+            <div class="heading-elements col-lg-offset-10">
+                <a href="/" class="btn btn-danger"> <span class="fa fa-reply"></span> Salir</a>
+                <a href="/factura/jasperReport_GenerarFacturaPDF?idFactura=${factura.id}" class="btn btn-info"> <span class="fa fa-print"></span> Imprimir</a>
+            </div>
+            <div class="container">
 
-        <g:each in="${com.businessLibellum.domains.facturacion.ItemFactura.findAllByFactura(com.businessLibellum.domains.facturacion.Factura.findById(factura.id))}" var="item">
-            <tr>
-                <td c>${item.item.nombre}</td>
-                <td >${item.cantidad}</td>
-                <td>${item.preciounidad}</td>
-                <td>${item.cantidad * item.preciounidad}</td>
-            </tr>
-        </g:each>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            %{--<td></td>--}%
-            <td colspan="2">
-                ------------------------------------<br>
-                <b>
-                    Subtotal:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$${factura.subTotal}<br>
-                    Descuento(%${factura.porciertoDescuento}):&nbsp;&nbsp;$${factura.porciertoDescuento * factura.subTotal}<br>
-                    Impuesto(%${factura.porcientoImpuesto}):&nbsp;&nbsp;&nbsp;&nbsp;$${factura.porcientoImpuesto * factura.subTotal}<br>
-                    Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$${factura.total}
-                </b>
-            </td>
-        </tr>
-        </tbody></table>
-    <g:link params="[idFactura: factura.id]" controller="factura" action="jasperReport_GenerarFacturaPDF">Generar Factura</g:link>
+
+
+                <div id='invoice'  class="invoice">
+
+                    <div class="invoice-container">
+
+                        <div class="row">
+
+                            <div class="col-lg-7 col-lg-offset-2">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="invoice-company">
+                                            %{--<img src="img/boooya.png" alt="Boooya - Revolution Admin Template">--}%
+                                            <h1><b>${factura.empresa.nombre}</b></h1>
+                                            <p>${factura.empresa.direccion}<br>
+                                                ${factura.empresa.ciudad}, ${factura.empresa.pais}<br>
+                                                Tel.:${factura.empresa.telefono}<br>
+                                                RNC: ${factura.empresa.rnc}
+                                            </>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="invoice-number text-right">
+                                            <p>Fecha: ${(new java.text.SimpleDateFormat("dd/MM/yyyy",new Locale("es", "ES"))).format(factura.fecha).toString()}</p>
+                                            <h3>Factura #${factura.codigo}</h3>
+                                            <h3><b>Factura ${factura.comprobante.nombre}</b></h3>
+                                            <p>
+                                                NCF: ${factura.ncf}<br>
+                                                <g:if test="${factura.vencimientoSecuencia_NCF}">
+                                                    Vencimiento secuencia: ${(new java.text.SimpleDateFormat("dd/MM/yyyy",new Locale("es", "ES"))).format(factura.vencimientoSecuencia_NCF).toString()}
+                                                </g:if>
+                                            </p>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-container invoice-container-highlight">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="row">
+                                    <div class="col-md-6    ">
+                                        <div class="invoice-address">
+                                            <h3><b>Vendido a:</b></h3>
+                                            <p>
+                                                RNC: ${factura.cliente.rnc}<br>
+                                                <b>${factura.cliente.nombre}</b><br>
+                                                ${factura.cliente.direccion}<br>
+                                                ${factura.cliente.ciudad}, ${factura.cliente.pais}<br>
+                                                Tel.:${factura.cliente.telefono}<br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="invoice-address text-right">
+                                            <h3><b>Metodo de pago:</b></h3>
+                                            <p>
+                                                ${factura.metodoPago.nombre}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-container">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>COD.</th>
+                                            <th colspan="2">NOMBRE PROD.</th>
+                                            <th>CANTIDAD</th>
+                                            <th width="150">PRECIO UNID.</th>
+                                            <th width="150">SUBTOTAL</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="text-thin">
+                                            <g:each in="${items}" var="item">
+                                                <tr>
+
+                                                    <td width="40" class="text-center">${item.id}</td>
+                                                    <td colspan="2" class="text-bold">${item.nombre_Item}</td>
+                                                    <td>${item.cantidad}</td>
+                                                    <td>${item.preciounidad}</td>
+                                                    <td class="text-bold">${item.cantidad*item.preciounidad}</td>
+                                                </tr>
+                                            </g:each>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 col-md-offset-8">
+                                        <table class="table table-bordered invoice-table-total">
+                                            <tbody>
+                                            <tr>
+                                                <td class="text-muted text-thin">Subtotal:</td>
+                                                <td width="150" class="text-muted">$${factura.montoBruto}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted text-thin">Impuesto (${factura.porcientoImpuesto}%):</td>
+                                                <td width="150" class="text-muted">$${factura.montoImpuesto}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted text-thin">Descuento (${factura.porcientoDescuento}%):</td>
+                                                <td width="150" class="text-muted">$${factura.montoDescuento}</td>
+                                            </tr>
+                                            <tr class="invoice-table-highlight">
+                                                <td class="text-bold">Total:</td>
+                                                <td width="150" class="text-bold">$${factura.montoNeto}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <label>Notas:</label>
+                                    <textarea  id="notas" name="notas" class="form-control" disabled="disabled" rows="5">${factura.notas}</textarea>
+                                </div>
+
+                                <div class="invoice-thanks">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="title">Gracias por preferirnos!</div>
+                                            <p>${factura.empresa.nombre}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- END PAGE CONTAINER -->
+
+        </div>
+        <!-- END APP CONTENT -->
+
+    </div>
+    <!-- END APP CONTAINER -->
+
+    <!-- START APP FOOTER -->
+    <div class="app-footer app-footer-default" id="footer">
+
+        <div class="container container-boxed">
+            <div class="app-footer-line">
+                <div class="copyright">&copy; 2016 Boooya. All right reserved in the Ukraine and other countries.</div>
+                <div class="pull-right">
+                    <ul class="list-inline">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Contacts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END APP FOOTER -->
 </div>
+<!-- END APP WRAPPER -->
 
+<!--
+        <div class="modal fade" id="modal-thanks" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon-cross"></span></button>
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-center margin-bottom-20">
+                            <img src="assets/images/smile.png" alt="Thank you" style="width: 100px;">
+                        </p>
+                        <h3 id="modal-thanks-heading" class="text-uppercase text-bold text-lg heading-line-below heading-line-below-short text-center"></h3>
+                        <p class="text-muted text-center margin-bottom-10">Thank you so much for likes</p>
+                        <p class="text-muted text-center">We will do our best to make<br> Boooya template perfect</p>
+                        <p class="text-center"><button class="btn btn-success btn-clean" data-dismiss="modal">Continue</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+<!-- IMPORTANT SCRIPTS -->
+<asset:javascript src="js/vendor/jquery/jquery.min.js"/>
+<asset:javascript src="js/vendor/jquery/jquery-migrate.min.js"/>
+<asset:javascript src="js/vendor/jquery/jquery-ui.min.js"/>
+<asset:javascript src="js/vendor/bootstrap/bootstrap.min.js"/>
+<asset:javascript src="js/vendor/moment/moment.min.js"/>
+<asset:javascript src="js/vendor/customscrollbar/jquery.mCustomScrollbar.min.js"/>
+<!-- END IMPORTANT SCRIPTS -->
+<!-- APP SCRIPTS -->
+<asset:javascript src="js/app.js"/>
+<asset:javascript src="js/app_plugins.js"/>
+<asset:javascript src="js/app_demo.js"/>      <!-- OPCION DE CAMBIAR EL TEMA DE LA PLANTILLAS-->
+<!-- END APP SCRIPTS -->
 
 </body>
 </html>

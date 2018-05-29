@@ -6,16 +6,24 @@ import com.businessLibellum.domains.Item
 
 class Factura {
 
-    String tipoFactura
-    Date fecha
-    Empresa empresa
-    Double subTotal
-    Double total
-    int porciertoDescuento
-    int porcientoImpuesto
+    Long codigo
+    String ncf
+    Date vencimientoSecuencia_NCF
+    Cliente cliente
     MetodoPago metodoPago
     Comprobante comprobante
-    Cliente cliente
+    Date fecha
+    Empresa empresa
+
+    //Datos dinero
+    BigDecimal porcientoImpuesto
+    BigDecimal porcientoDescuento
+    BigDecimal montoBruto
+    BigDecimal montoDescuento
+    BigDecimal montoImpuesto
+    BigDecimal montoNeto
+
+    String tipoFactura
     String notas
 
 
@@ -26,9 +34,9 @@ class Factura {
     String ciudad_Cliente
     String pais_Cliente
     String telefono_Cliente
+    String rnc_Cliente
 
     String metodoPago_String
-    String comprobante_String
 
 
     //Datos genericos del dominio.
@@ -39,15 +47,13 @@ class Factura {
     Date dateCreated;
     Date lastUpdated;
 
-    String detalles_Factura
-
-
-//    static hasMany = [articulos:ItemFactura]
 
     static constraints = {
+        vencimientoSecuencia_NCF(nullable: true)
         porcientoImpuesto(nullable:true)
-        porciertoDescuento(nullable:true)
-        fecha(nullable:true)
+        porcientoDescuento(nullable:true)
+        montoImpuesto(nullable: true)
+        montoDescuento(nullable: true)
 
         nombre_Cliente(nullable:true)
         direccion_Cliente(nullable:true)
@@ -55,6 +61,5 @@ class Factura {
         pais_Cliente(nullable:true)
         telefono_Cliente(nullable:true)
 
-        detalles_Factura(nullable:true)
     }
 }

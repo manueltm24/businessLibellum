@@ -19,7 +19,7 @@ class EmpresaSelectorInterceptor {
     }
 
     boolean before() {
-        println(session[IConstantes.EMPRESA_SELECCIONADA])
+//        println(session[IConstantes.EMPRESA_SELECCIONADA])
 
         println "capturando el uri: ${request.requestURL} request: ${request.remoteHost} - Controlador: ${controllerName} - Action: ${actionName}"
 

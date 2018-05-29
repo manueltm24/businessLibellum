@@ -13,4 +13,8 @@ class HomeController {
 
         [empresa: empresa]
     }
+
+    def inicio(){
+
+    }
 }

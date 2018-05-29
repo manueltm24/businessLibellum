@@ -6,10 +6,16 @@ class FacturaForm implements Validateable {
     long cliente
     long  metodoPago
     long comprobante
-    Double subtotal
-    int descuento_porciento
-    int impuesto_porciento
-    Double total
+    String fecha
+    String notas
+
+    //Datos dinero
+    BigDecimal porcientoImpuesto
+    BigDecimal porcientoDescuento
+    BigDecimal montoBruto
+    BigDecimal montoDescuento
+    BigDecimal montoImpuesto
+    BigDecimal montoNeto
 
     List<ItemForm> listadoArticulos
 

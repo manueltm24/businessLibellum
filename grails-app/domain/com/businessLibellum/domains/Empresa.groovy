@@ -10,12 +10,16 @@ class Empresa {
     String rnc
     Foto logoEmpresa
 
+
     //TODO ESTANDARIZAR LA DIRECCION (CREAR OBJETOS PAIS, CIUDAD, ETC)
     String direccion
     String ciudad
     String pais
 
-    Double secuenciaFacturacion = 1;
+    BigDecimal impuesto_default=0
+    String notas_default
+
+    Long secuenciaFacturacion = 1;
 
 
     Inventario inventario
@@ -42,6 +46,8 @@ class Empresa {
         direccion(nullable: true)
         pais(nullable: true)
         ciudad(nullable: true)
+
+        notas_default(nullable: true)
 
     }
 }

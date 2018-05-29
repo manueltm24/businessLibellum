@@ -1,11 +1,11 @@
 package com.businessLibellum.domains
 
-import com.businessLibellum.domains.seguridad.Usuario
 
 class Cliente {
 
     String nombre
     String telefono
+    String rnc
 
     //TODO ESTANDARIZAR LA DIRECCION (CREAR OBJETOS PAIS, CIUDAD, ETC)
     String direccion
@@ -27,6 +27,7 @@ class Cliente {
         direccion(nullable: true)
         pais(nullable: true)
         ciudad(nullable: true)
+        rnc(nullable: true)
 
     }
 

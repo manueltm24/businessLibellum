@@ -5,10 +5,11 @@ import com.businessLibellum.domains.Empresa
 class Comprobante {
 
     String nombre
-    String numeracion_Inicio
-    Long numeracion_Fin
+    String secuencia
     Empresa empresa
-    Double secuencia =1
+    Long contador =1
+    Date vencimientoSecuencia
+
 
     //Datos genericos del dominio.
     boolean expired = false
@@ -19,7 +20,31 @@ class Comprobante {
     Date lastUpdated;
 
     static constraints = {
-//        numeracion_Inicio maxSize: 3
-//        numeracion_Fin maxSize: 8
+        vencimientoSecuencia(nullable: true)
+
+    }
+
+    static String verificarSecuencia(Comprobante comprobante){
+
+        if(comprobante.contador==10){
+            comprobante.secuencia = comprobante.secuencia.substring(0, comprobante.secuencia.length() - 1) + ''
+            comprobante.save(flush:true, failOnError:true)
+            return comprobante.secuencia + comprobante.contador
+        }
+        else if(comprobante.contador==100){
+            comprobante.secuencia = comprobante.secuencia.substring(0, comprobante.secuencia.length() - 1) + ''
+            comprobante.save(flush:true, failOnError:true)
+            return comprobante.secuencia + comprobante.contador
+        }
+        else if(comprobante.contador==1000){
+            comprobante.secuencia = comprobante.secuencia.substring(0, comprobante.secuencia.length() - 1) + ''
+            comprobante.save(flush:true, failOnError:true)
+            return comprobante.secuencia + comprobante.contador
+        }
+        else{
+            return comprobante.secuencia+comprobante.contador
+        }
+
+
     }
 }

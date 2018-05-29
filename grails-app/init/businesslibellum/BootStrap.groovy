@@ -11,6 +11,9 @@ import com.businessLibellum.domains.seguridad.Requestmap
 import com.businessLibellum.domains.seguridad.Usuario
 import com.businessLibellum.domains.seguridad.UsuarioPerfil
 
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
 class BootStrap {
 
     def init = { servletContext ->
@@ -47,14 +50,16 @@ class BootStrap {
 
 
         //PARA PRUEBAS DEL SISTEMA!
-        Empresa empresa =Empresa.findByNombre("DeliMust") ? null : new Empresa(nombre: 'Vegatec Dominicana', telefono: '809-431-1428', direccion: 'Jardines del Este, C/1 #2A', ciudad: 'Santiago',pais: 'Republica Dominicana').save(flush: true, failOnError: true)
-        Cliente.findByNombre("Vanessa Valenzuela") ? null : new Cliente(nombre: 'Vanessa Valenzuela', telefono: '809-555-5555', direccion: 'Cerros de Gurabo', ciudad: 'Santiago',pais: 'Republica Dominicana', empresa: empresa).save(flush: true, failOnError: true)
+        Empresa empresa =Empresa.findByNombre("Vegatec Dominicana") ? null : new Empresa(nombre: 'Vegatec Dominicana', telefono: '809-431-1428', direccion: 'Jardines del Este, C/1 #2A', ciudad: 'Santiago',pais: 'Republica Dominicana', rnc: "402-2268628-5").save(flush: true, failOnError: true)
+        Cliente.findByNombre("Vanessa Valenzuela") ? null : new Cliente(nombre: 'Vanessa Valenzuela', telefono: '809-555-5555', direccion: 'Cerros de Gurabo', ciudad: 'Santiago',pais: 'Republica Dominicana', empresa: empresa,rnc: "402-2168457-1").save(flush: true, failOnError: true)
         Item.findByNombre("Coca Cola") ? null : new Item(nombre: 'Coca Cola', precio: '30'.toDouble(), cantidad: 10).save(flush: true, failOnError: true)
         MetodoPago.findByNombre(IConstantes.EFECTIVO) ? null : new MetodoPago(nombre: IConstantes.EFECTIVO).save(flush: true, failOnError: true)
         MetodoPago.findByNombre(IConstantes.CREDITO) ? null : new MetodoPago(nombre: IConstantes.CREDITO).save(flush: true, failOnError: true)
         MetodoPago.findByNombre(IConstantes.TARJETA_CREDITO) ? null : new MetodoPago(nombre: IConstantes.TARJETA_CREDITO).save(flush: true, failOnError: true)
 
-        Comprobante.findByNombreAndEmpresa(IConstantes.CONSUMIDOR_FINAL, empresa) ? null : new Comprobante(nombre: IConstantes.CONSUMIDOR_FINAL, empresa: empresa, numeracion_Inicio: "B01", numeracion_Fin: 00000001).save(flush: true, failOnError: true)
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        Date fecha = format.parse("10/08/2018");
+        Comprobante.findByNombreAndEmpresa(IConstantes.CREDITO_FISCAL, empresa) ? null : new Comprobante(vencimientoSecuencia: fecha, nombre: IConstantes.CREDITO_FISCAL, empresa: empresa, secuencia: "B010000000", contador: 1).save(flush: true, failOnError: true)
 
     }
     def destroy = {

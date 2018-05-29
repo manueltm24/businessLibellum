@@ -14,11 +14,11 @@ class UsuarioController {
 
 
     def index() {
-        [usuarios:Usuario.findAllByEnabled(true),empresas:Empresa.findAllByEnabled(true)]
+        [usuarios:Usuario.findAllByEnabled(true)]
     }
 
     def crearNuevoUsuario(){
-
+        [usuarios:Usuario.findAllByEnabled(true),empresas:Empresa.findAllByEnabled(true)]
     }
 
     def procesarNuevoUsuario(String nombre, String apellido, String username, String password, String telefono, String email, boolean admin){

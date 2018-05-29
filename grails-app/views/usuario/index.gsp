@@ -1,5 +1,5 @@
 <%@ page import="com.businessLibellum.domains.seguridad.Usuario; com.businessLibellum.domains.seguridad.Perfil" %>
-<g:applyLayout name="libellumMain">
+<g:applyLayout name="libellum_main">
     <content tag="header">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>

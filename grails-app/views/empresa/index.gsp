@@ -1,4 +1,4 @@
-<g:applyLayout name="libellumMain">
+<g:applyLayout name="libellum_main">
     <content tag="body">
         <g:link class="btn btn-success col-lg-12 margin-bottom-10" action="crearNuevaEmpresa"><span class="icon-plus-circle"></span> Crear nueva empresa</g:link>
 
