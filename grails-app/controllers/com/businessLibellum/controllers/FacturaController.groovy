@@ -35,7 +35,7 @@ class FacturaController {
     def nuevaFactura(){
         Empresa empresa=Empresa.findById(session[IConstantes.EMPRESA_SELECCIONADA] as Long)
 
-        [empresa: empresa,clientes: Cliente.findAllByEmpresa(empresa), items: Item.list(), metodosPago: MetodoPago.findAllByEnabled(true), comprobantes: Comprobante.findAllByEnabledAndEmpresa(true,empresa), fecha: new Date()]
+        [empresa: empresa,clientes: Cliente.findAllByEmpresaAndEnabled(empresa,true), items: Item.list(), metodosPago: MetodoPago.findAllByEnabled(true), comprobantes: Comprobante.findAllByEnabledAndEmpresa(true,empresa), fecha: new Date()]
 
     }
 

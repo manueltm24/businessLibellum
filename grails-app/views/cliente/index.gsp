@@ -6,16 +6,19 @@
             <div class="row">
 
                 %{--<div class="col-md-6">--}%
-                    %{----}%
+                %{----}%
                 %{--</div>--}%
+
                 <div class="col-md-12">
+                <g:link class="btn btn-success col-lg-12 margin-bottom-10" action="nuevoCliente"><span class="icon-plus-circle"></span> Crear nuevo cliente</g:link>
 
 
                     <!-- TABLA DE FACTURAS -->
                     <div class="block block-condensed block-highlight">
+
                         <div class="app-heading app-heading-small">
                             <div class="title">
-                                <p>Artículos presente en la factura.</p>
+                                <p>Clientes registrados.</p>
                             </div>
                         </div>
                         <div class="block-content">
@@ -25,27 +28,22 @@
                                 <tr>
                                     <th>ID </th>
                                     <th>Nombre</th>
-                                    <th>Monto</th>
-                                    <th>Fecha</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <g:each in="${facturas}" var="factura">
+                                <g:each in="${clientes}" var="cliente">
                                     <tr>
-                                        <td>${factura.codigo}</td>
-                                        <td>${factura.cliente.nombre}</td>
-                                        <td>$${factura.montoNeto}</td>
-                                        <td>${(new java.text.SimpleDateFormat("dd/MM/yyyy",new Locale("es", "ES"))).format(factura.fecha).toString()}</td>
+                                        <td>${cliente.id}</td>
+                                        <td>${cliente.nombre}</td>
                                         <td>
-                                            <span class="label label-success label-bordered label-ghost">PAGADO</span>
+                                            <span class="label label-success label-bordered label-ghost">ACTIVO</span>
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <g:link class="btn btn-info btn-icon " action="editarFactura" params="[idFactura:factura.id]"><span class="icon-pencil"></span></g:link>
-                                                <g:link title="Pagar" class="btn btn-success btn-icon " action="editarFactura" params="[idFactura:factura.id]"><span class="icon-enter"></span></g:link>
-                                                <g:link class="btn btn-danger btn-icon " action="eliminarFactura"  params="[idFactura:factura.id]"><span class="icon-trash"></span></g:link>
+                                                <g:link class="btn btn-info btn-icon " action="editarCliente" params="[idCliente:cliente.id]"><span class="icon-pencil"></span></g:link>
+                                                <g:link class="btn btn-danger btn-icon " action="eliminarCliente"  params="[idCliente:cliente.id]"><span class="icon-trash"></span></g:link>
                                             </div>
                                         </td>
                                     </tr>
@@ -61,8 +59,6 @@
 
                         <div class="heading-elements">
                             <a href="/" class="btn btn-danger"> <span class="fa fa-reply"></span> Salir</a>
-                            <a href="#" onclick="procesarNuevaFactura()" class="btn btn-success"> <span class="fa fa-floppy-o"></span> Guardar </a>
-                            <a href="#" class="btn btn-default"> <span class="fa fa-print"></span> Imprimir</a>
                         </div>
                     </div>
                 </div>
