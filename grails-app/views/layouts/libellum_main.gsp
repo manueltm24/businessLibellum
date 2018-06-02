@@ -119,15 +119,11 @@
                                 <ul>
                                     <li><a href="/factura/nuevaFactura">Facturar</a></li>
                                     <li><a href="/factura/listadoFacturas">Lista facturas</a></li>
-                                    <li><a href="/home/error404">Cuentas por cobrar</a></li>
+                                    <li><a href="/factura/facturasPorPagar">Cuentas por cobrar</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#"><span class="icon-store"></span> Inventario</a>
-                                <ul>
-                                    <li><a href="/home/error404">Nuevo producto</a></li>
-                                    <li><a href="/factura/listadoFacturas">Listado productos</a></li>
-                                </ul>
+                                <a href="/item/index"><span class="icon-store"></span> Inventario</a>
                             </li>
                             <li>
                                 <a href="/cliente/index"><span class="fa fa-users"></span> Clientes</a>

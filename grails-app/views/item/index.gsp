@@ -6,16 +6,19 @@
             <div class="row">
 
                 %{--<div class="col-md-6">--}%
-                    %{----}%
+                %{----}%
                 %{--</div>--}%
+
                 <div class="col-md-12">
+                    <g:link class="btn btn-success col-lg-12 margin-bottom-10" action="nuevoItem"><span class="icon-plus-circle"></span> Crear nuevo artículo</g:link>
 
 
-                    <!-- TABLA DE FACTURAS -->
+                <!-- TABLA DE FACTURAS -->
                     <div class="block block-condensed block-highlight">
+
                         <div class="app-heading app-heading-small">
                             <div class="title">
-                                <p>Artículos presente en la factura.</p>
+                                <p>Artículos registrados.</p>
                             </div>
                         </div>
                         <div class="block-content">
@@ -25,32 +28,24 @@
                                 <tr>
                                     <th>ID </th>
                                     <th>Nombre</th>
-                                    <th>Monto</th>
-                                    <th>Fecha</th>
+                                    <th>Cantidad</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <g:each in="${facturas}" var="factura">
+                                <g:each in="${items}" var="item">
                                     <tr>
-                                        <td>${factura.codigo}</td>
-                                        <td>${factura.cliente.nombre}</td>
-                                        <td>$${factura.montoNeto}</td>
-                                        <td>${(new java.text.SimpleDateFormat("dd/MM/yyyy",new Locale("es", "ES"))).format(factura.fecha).toString()}</td>
+                                        <td>${item.id}</td>
+                                        <td>${item.nombre}</td>
+                                        <td>${item.cantidad}</td>
                                         <td>
-                                            <g:if test="${factura.facturaSaldada}">
-                                                <span class="label label-success label-bordered label-ghost">SALDADA</span>
-                                            </g:if>
-                                            <g:else>
-                                                <span class="label label-danger label-bordered label-ghost">PAGO PEDIENTE</span>
-                                            </g:else>
+                                            <span class="label label-success label-bordered label-ghost">ACTIVO</span>
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <g:link class="btn btn-default btn-icon " action="modeloFactura" params="[idFactura:factura.id]"><span class="icon-printer"></span></g:link>
-                                                <g:link class="btn btn-info btn-icon " action="editarFactura" params="[idFactura:factura.id]"><span class="icon-pencil"></span></g:link>
-                                                <g:link class="btn btn-danger btn-icon " action="eliminarFactura"  params="[idFactura:factura.id]"><span class="icon-trash"></span></g:link>
+                                                <g:link class="btn btn-info btn-icon " action="editarItem" params="[idItem:item.id]"><span class="icon-pencil"></span></g:link>
+                                                <g:link class="btn btn-danger btn-icon " action="eliminarItem"  params="[idItem:item.id]"><span class="icon-trash"></span></g:link>
                                             </div>
                                         </td>
                                     </tr>

@@ -35,7 +35,7 @@ class FacturaController {
     def nuevaFactura(){
         Empresa empresa=Empresa.findById(session[IConstantes.EMPRESA_SELECCIONADA] as Long)
 
-        [empresa: empresa,clientes: Cliente.findAllByEmpresaAndEnabled(empresa,true), items: Item.list(), metodosPago: MetodoPago.findAllByEnabled(true), comprobantes: Comprobante.findAllByEnabledAndEmpresa(true,empresa), fecha: new Date()]
+        [empresa: empresa,clientes: Cliente.findAllByEmpresaAndEnabled(empresa,true), items: Item.findByEmpresaAndEnabled(empresa,true), metodosPago: MetodoPago.findAllByEnabled(true), comprobantes: Comprobante.findAllByEnabledAndEmpresa(true,empresa), fecha: new Date()]
 
     }
 
@@ -74,18 +74,29 @@ class FacturaController {
                 montoDescuento: form.montoDescuento,
                 montoImpuesto: form.montoImpuesto,
                 porcientoImpuesto: form.porcientoImpuesto,
-                nombreCliente:Cliente.findById(form.cliente).nombre,
-                direccion: Cliente.findById(form.cliente).direccion,
-                ciudad: Cliente.findById(form.cliente).ciudad,
-                pais: Cliente.findById(form.cliente).pais,
-                telefono: Cliente.findById(form.cliente).telefono,
+                facturaSaldada: form.metodoPago!=MetodoPago.findByNombre(IConstantes.CREDITO).id ? true : false,
+
+//                nombreCliente:Cliente.findById(form.cliente).nombre,
+//                direccion: Cliente.findById(form.cliente).direccion,
+//                ciudad: Cliente.findById(form.cliente).ciudad,
+//                pais: Cliente.findById(form.cliente).pais,
+//                telefono: Cliente.findById(form.cliente).telefono,
+
+
                 metodoPago_String: MetodoPago.findById(form.metodoPago).nombre,
                 nombre_Cliente: Cliente.findById(form.cliente).nombre,
                 direccion_Cliente: Cliente.findById(form.cliente).direccion,
                 pais_Cliente: Cliente.findById(form.cliente).pais,
                 ciudad_Cliente: Cliente.findById(form.cliente).ciudad,
                 telefono_Cliente:Cliente.findById(form.cliente).telefono,
-                rnc_Cliente: Cliente.findById(form.cliente).rnc
+                rnc_Cliente: Cliente.findById(form.cliente).rnc,
+
+                nombre_Empresa: empresa.nombre,
+                direccion_Empresa: empresa.direccion,
+                pais_Empresa: empresa.pais,
+                ciudad_Empresa: empresa.ciudad,
+                telefono_Empresa:empresa.telefono,
+                rnc_Empresa: empresa.rnc,
         ).save(flush:true, failOnError:true)
 
         form.listadoArticulos.each {
@@ -104,6 +115,21 @@ class FacturaController {
 
     def modeloFactura(long idFactura){
         [factura: Factura.findById(idFactura), items: ItemFactura.findAllByFactura(Factura.findById(idFactura))]
+    }
+
+    def facturasPorPagar(){
+        Empresa empresa=Empresa.findById(session[IConstantes.EMPRESA_SELECCIONADA] as Long)
+        [facturas: Factura.findAllByEmpresaAndEnabledAndFacturaSaldada(empresa,true,false)]
+
+    }
+
+    def procesarPagoFactura(long idFactura){
+        Factura factura = Factura.findById(idFactura)
+        factura.facturaSaldada=true
+        factura.save(flush:true,failOnError:true)
+        redirect(controller:'factura', action:'listadoFacturas')
+
+
     }
 
     def downloadInvoice = {

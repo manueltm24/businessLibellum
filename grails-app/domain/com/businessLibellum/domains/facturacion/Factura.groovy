@@ -14,6 +14,7 @@ class Factura {
     Comprobante comprobante
     Date fecha
     Empresa empresa
+    boolean facturaSaldada
 
     //Datos dinero
     BigDecimal porcientoImpuesto
@@ -26,8 +27,9 @@ class Factura {
     String tipoFactura
     String notas
 
-
-    //Datos para facturacion, JASPERREPORT
+    /**
+     * CAMPOS PARA REPORTE FACTURA (JASPER REPORTS)
+     */
     //Cliente
     String nombre_Cliente
     String direccion_Cliente
@@ -35,6 +37,13 @@ class Factura {
     String pais_Cliente
     String telefono_Cliente
     String rnc_Cliente
+    //EMPRESA
+    String nombre_Empresa
+    String direccion_Empresa
+    String ciudad_Empresa
+    String pais_Empresa
+    String telefono_Empresa
+    String rnc_Empresa
 
     String metodoPago_String
 

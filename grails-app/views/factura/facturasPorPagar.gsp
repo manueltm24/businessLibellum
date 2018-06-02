@@ -6,7 +6,7 @@
             <div class="row">
 
                 %{--<div class="col-md-6">--}%
-                    %{----}%
+                %{----}%
                 %{--</div>--}%
                 <div class="col-md-12">
 
@@ -15,7 +15,7 @@
                     <div class="block block-condensed block-highlight">
                         <div class="app-heading app-heading-small">
                             <div class="title">
-                                <p>Artículos presente en la factura.</p>
+                                <p>Cuentas por cobrar.</p>
                             </div>
                         </div>
                         <div class="block-content">
@@ -24,7 +24,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID </th>
-                                    <th>Nombre</th>
+                                    <th>Cliente</th>
                                     <th>Monto</th>
                                     <th>Fecha</th>
                                     <th>Estado</th>
@@ -39,18 +39,12 @@
                                         <td>$${factura.montoNeto}</td>
                                         <td>${(new java.text.SimpleDateFormat("dd/MM/yyyy",new Locale("es", "ES"))).format(factura.fecha).toString()}</td>
                                         <td>
-                                            <g:if test="${factura.facturaSaldada}">
-                                                <span class="label label-success label-bordered label-ghost">SALDADA</span>
-                                            </g:if>
-                                            <g:else>
-                                                <span class="label label-danger label-bordered label-ghost">PAGO PEDIENTE</span>
-                                            </g:else>
+                                            <span class="label label-danger label-bordered label-ghost">PAGO PEDIENTE</span>
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <g:link class="btn btn-default btn-icon " action="modeloFactura" params="[idFactura:factura.id]"><span class="icon-printer"></span></g:link>
-                                                <g:link class="btn btn-info btn-icon " action="editarFactura" params="[idFactura:factura.id]"><span class="icon-pencil"></span></g:link>
-                                                <g:link class="btn btn-danger btn-icon " action="eliminarFactura"  params="[idFactura:factura.id]"><span class="icon-trash"></span></g:link>
+                                                <g:link title="Pagar" class="btn btn-success btn-icon " action="procesarPagoFactura" params="[idFactura:factura.id]"><span class="icon-enter"></span></g:link>
+                                                <g:link title="Imprimir" class="btn btn-default btn-icon " action="modeloFactura" params="[idFactura:factura.id]"><span class="icon-printer"></span></g:link>
                                             </div>
                                         </td>
                                     </tr>

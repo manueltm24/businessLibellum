@@ -22,8 +22,6 @@ class Empresa {
     Long secuenciaFacturacion = 1;
 
 
-    Inventario inventario
-
     static hasMany = [usuarios:Usuario, clientes:Cliente]
 
 
@@ -36,7 +34,6 @@ class Empresa {
     Date lastUpdated;
 
     static constraints = {
-        inventario(nullable: true)
         usuarios(nullable: true)
         clientes(nullable: true)
         logoEmpresa(nullable: true)

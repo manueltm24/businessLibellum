@@ -32,7 +32,7 @@
                                 <p>Cliente a facturar.</p>
                             </div>
                             <div class="heading-elements">
-                                <a href="#" class="btn btn-default btn-clean"> <span class="fa fa-user-plus"></span> Cliente</a>
+                                <a href="/cliente/nuevoCliente" class="btn btn-default btn-clean"> <span class="fa fa-user-plus"></span> Cliente</a>
                             </div>
                         </div>
 
@@ -113,7 +113,7 @@
                                 <p>Agregue los articulos que desea facturar.</p>
                             </div>
                             <div class="heading-elements">
-                                <a href="#" class="btn btn-default btn-clean"> <span class="fa fa-plus"></span> Artículo</a>
+                                <a href="/item/nuevoItem" class="btn btn-default btn-clean"> <span class="fa fa-plus"></span> Artículo</a>
                             </div>
                         </div>
 
